@@ -1,0 +1,12 @@
+
+
+Pobrać Java 8 JDK,
+https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+
+(bez demo & samples)
+
+Pobrać IntelliJ Community
+https://www.jetbrains.com/idea/download/#section=mac
+
+Ściągnąć obecny projekt, zaimportować przez pom.xml
+
