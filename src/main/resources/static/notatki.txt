@@ -1,0 +1,11 @@
+Dodawanie nowego widoku z kontrolerem:
+
+1) skopiować secondView.html -> thirdView.html,
+2) skopiować secondCtrl.js -> thirdCtrl.js
+3) wewnątrz thirdCtrl.js zmienić jego nazwę,
+4) w index.html dodać import thridCtrl.js,
+5) w mainApp.js dostosować sekcję ROUTE ... dodając analogicznie route na "thirdView"
+6) zmienić topBar.html tak, żeby był też link do trzeciego widoku
+
+
+
