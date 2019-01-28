@@ -19,7 +19,7 @@ public class MainController {
 
     @GetMapping(value = "/status")
     public GenericResponse appStatus() {
-        return new GenericResponse("App is running OK");
+        return new GenericResponse("Hello App is running OK");
     }
 
 }
