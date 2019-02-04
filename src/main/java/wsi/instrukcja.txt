@@ -1,0 +1,9 @@
+Ściągnąć Javę z :
+
+https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+
+(wersja bez "Demos")
+
+oraz IDE (Intellij Ultimate EAP 2019.1):
+
+https://confluence.jetbrains.com/display/IDEADEV/IDEA+2019.1+EAP
