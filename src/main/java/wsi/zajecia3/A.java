@@ -26,12 +26,12 @@ class QuadraticEquationSolver {
 //        Math.sqrt(2);
         // Żebiemy disa <3
         double dddd = b*b - 4*a*c;
-        double x1 = ....;
-        double x2 = ....;
+        double x1 = 0;  //tu wpisać wzory z wikipedii
+        double x2 = 0;
 
         //sprawdzic ktory jest mniejszy
         // napisac return x_mniejszy
-
+        return 0; //tu wpisać odpowiedni wynik
     }
 }
 
@@ -78,6 +78,13 @@ public class A {
     }
 
     //tu dopisać testy dla BucketSolver
+    static void testBucket1(BucketSolver solver) {
+        double wynik = solver.value(1);
+        double expected = 0;
+        if (Math.abs(wynik - expected)>1e-5) {
+            throw new RuntimeException("Zły wynik");
+        }
+    }
 
 
     public static void main(String[] args) {
@@ -88,7 +95,7 @@ public class A {
         testRownanieKwadratowe4(solver);
 
         BucketSolver solver1 = new BucketSolver();
-        ///odpalić testy
+        ///odpalić testy solver1'a
     }
 
 }
