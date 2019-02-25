@@ -1,3 +1,5 @@
+package wsi.zajecia2;
+
 import java.util.Scanner;
 
 public class A {
