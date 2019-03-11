@@ -1,8 +1,11 @@
 package wsi.zajecia4;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
+//dialogi w javafx:
+//https://code.makery.ch/blog/javafx-dialogs-official/
 public class Controller {
     @FXML private TextField tf1;
     @FXML private TextField tf2;
@@ -14,10 +17,17 @@ public class Controller {
         try {
             liczbaN = Integer.valueOf(s);
         } catch (NumberFormatException e) {
-            System.out.println("tu ma byc liczba a nie [" + s + "]");
+            String message = "Expecting an integer, found [" + s + "]";
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("неправильный ввод");
+            alert.setHeaderText("Wrong input in the text filed encountered");
+            alert.setContentText(message);
+
+            alert.showAndWait();
         }
         liczbaN += 10;
-        System.out.println("przycisk został naciśnięty.. " + x + " razy");
+        System.out.println();
         tf2.setText("" + liczbaN * (liczbaN+1)/2 );
     }
 }
