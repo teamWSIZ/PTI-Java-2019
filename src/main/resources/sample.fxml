@@ -1,0 +1,14 @@
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+
+
+<?import javafx.scene.control.TextField?>
+<VBox fx:controller="wsi.zajecia4.Controller"
+      xmlns:fx="http://javafx.com/fxml">
+
+    <Button fx:id="b1" onAction="#klikeeed"> Nasz button </Button>
+    <TextField fx:id="tf1" promptText="wpisz liczbę"></TextField>
+    <TextField fx:id="tf2" promptText="wynik"></TextField>
+
+</VBox>
+
