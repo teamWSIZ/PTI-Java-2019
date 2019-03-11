@@ -3,12 +3,21 @@
 
 
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
 <VBox fx:controller="wsi.zajecia4.Controller"
       xmlns:fx="http://javafx.com/fxml">
 
     <Button fx:id="b1" onAction="#klikeeed"> Nasz button </Button>
     <TextField fx:id="tf1" promptText="wpisz liczbę"></TextField>
     <TextField fx:id="tf2" promptText="wynik"></TextField>
+    <Separator></Separator>
+    <HBox style="-fx-padding: 5px">
+        <TextField fx:id="wynikiWyborow"
+                   promptText="wrzuć wynik wyborów (csv)"></TextField>
+        <Button onAction="#findWinner">znajdź zwycięzcę</Button>
+    </HBox>
+
 
 </VBox>
 

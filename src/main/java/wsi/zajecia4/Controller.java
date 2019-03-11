@@ -7,9 +7,16 @@ import javafx.scene.control.TextField;
 //dialogi w javafx:
 //https://code.makery.ch/blog/javafx-dialogs-official/
 public class Controller {
+    int x = 0;
     @FXML private TextField tf1;
     @FXML private TextField tf2;
-    int x = 0;
+    @FXML private TextField wynikiWyborow;
+
+    public void findWinner() {
+        String wpisano = wynikiWyborow.getText();
+        System.out.println(wpisano);
+    }
+
     public void klikeeed() {
         x = x+1;
         int liczbaN = 0;
@@ -30,4 +37,5 @@ public class Controller {
         System.out.println();
         tf2.setText("" + liczbaN * (liczbaN+1)/2 );
     }
+
 }
