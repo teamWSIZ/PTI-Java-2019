@@ -1,5 +1,6 @@
 package wsi.zajecia5;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 
 public class B {
@@ -28,10 +29,6 @@ public class B {
         System.out.println(Arrays.toString(w));
 
         /// znaleźć drugą najmniejszą liczbę w tablicy
-
-
-
-
 
 
 
