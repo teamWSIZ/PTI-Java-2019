@@ -46,8 +46,10 @@ public class Controller {
         Alert alert = new Alert(Alert.AlertType.WARNING);
 
 
-        alert.setGraphic(new ImageView(new Image("missile.png")));
-
+        ImageView view = new ImageView(new Image("many_missiles.jpg"));
+        view.setFitHeight(100);
+        view.setFitWidth(100);
+        alert.setGraphic(view);
 
         alert.setTitle("Missile alert");
         alert.setHeaderText("Rockets are heading to your location; take cover now!");
