@@ -1,9 +1,12 @@
-package wsi.zajecia4;
+package wsi.zajecia6;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 //dialogi w javafx:
 //https://code.makery.ch/blog/javafx-dialogs-official/
@@ -39,4 +42,17 @@ public class Controller {
         tf2.setText("" + liczbaN * (liczbaN+1)/2 );
     }
 
+    public void alertuj(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+
+
+        alert.setGraphic(new ImageView(new Image("missile.png")));
+
+
+        alert.setTitle("Missile alert");
+        alert.setHeaderText("Rockets are heading to your location; take cover now!");
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image("missile.png")); // To add an icon
+        alert.showAndWait();
+    }
 }
