@@ -70,20 +70,33 @@ public class Controller {
     }
 
     public void draw() {
-        gc.setFill(Color.rgb(20,200,30,0.6));
+        gc.setFill(Color.rgb(20,30,30,0.6));
         gc.setStroke(Color.BLUEVIOLET);
 
         gc.fillRect(10,10,100,100);
         gc.strokeRoundRect(10, 10, 50, 50, 10, 10);
         gc.fillOval(70, 10, 50, 20);
-        gc.setFont(new Font("System Regular", 23));
-        gc.strokeText("Hello ♛", 10, 20);
+
+        Font f = gc.getFont();
+        Font nowy = new Font(f.getName(), 30);
+        gc.setFont(nowy);
+
+        gc.strokeText("♛ ♖ ♗ ♞ ♟ ♟ ♟", 10, 40);
         System.out.println(gc.getFont());
 
 
 
         for (int i = 0; i < 40; i++) {
             gc.strokeLine(0,0,100,100 + i * 10);
+        }
+
+        int size = 40;
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if ((i+j)%2==0) {
+                    gc.fillRect(i* size, j*size, size, size);
+                }
+            }
         }
 
         gc.drawImage(new Image("missile.png"), 100,200 );
