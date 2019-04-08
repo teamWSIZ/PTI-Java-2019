@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 //dialogi w javafx:
@@ -23,8 +24,9 @@ public class Controller {
 
     @FXML
     public void initialize() {
+        //uruchamiana przy włączaniu aplikacji
         System.out.println("second");
-        gc = img.getGraphicsContext2D();
+        gc = img.getGraphicsContext2D(); //wyciągamy context z pola typu canvas
     }
 
     public void findWinner() {
@@ -55,8 +57,6 @@ public class Controller {
 
     public void alertuj(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
-
-
         ImageView view = new ImageView(new Image("missile.png"));
         view.setFitHeight(100);
         view.setFitWidth(100);
@@ -70,14 +70,21 @@ public class Controller {
     }
 
     public void draw() {
-        gc.setFill(Color.AQUA);
-        gc.fillRect(10,10,100,100);
+        gc.setFill(Color.rgb(20,200,30,0.6));
         gc.setStroke(Color.BLUEVIOLET);
+
+        gc.fillRect(10,10,100,100);
         gc.strokeRoundRect(10, 10, 50, 50, 10, 10);
         gc.fillOval(70, 10, 50, 20);
-        gc.strokeText("Hello Canvas", 150, 20);
-        gc.lineTo(400,30);
-        gc.strokeLine(30,60,40,20);
+        gc.setFont(new Font("System Regular", 23));
+        gc.strokeText("Hello ♛", 10, 20);
+        System.out.println(gc.getFont());
+
+
+
+        for (int i = 0; i < 40; i++) {
+            gc.strokeLine(0,0,100,100 + i * 10);
+        }
 
         gc.drawImage(new Image("missile.png"), 100,200 );
     }
