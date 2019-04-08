@@ -5,6 +5,8 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.ScrollPane?>
 <VBox fx:controller="wsi.zajecia6.Controller"
       xmlns:fx="http://javafx.com/fxml">
 
@@ -19,6 +21,22 @@
     </HBox>
 
     <Button onAction="#alertuj"> Missile alert! </Button>
+
+    <HBox>
+        <VBox prefWidth="200">
+            <Button onAction="#draw">A</Button>
+            <Button>A</Button>
+            <Button>A</Button>
+        </VBox>
+
+        <ScrollPane fx:id="img_pane" prefHeight="400.0" prefWidth="400.0">
+            <content>
+                <Canvas fx:id="img" height="300" width="300" />
+            </content>
+        </ScrollPane>
+
+
+    </HBox>
 
 
 </VBox>
