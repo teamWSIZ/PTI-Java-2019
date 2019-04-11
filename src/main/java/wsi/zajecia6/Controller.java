@@ -152,7 +152,7 @@ public class Controller {
 
         //Zadanie: znalezc 20 klatek animacji postaci...
         //np. z LoL
-        //np. zaczynajac szukac tu: https://www.deviantart.com/leagueoflegends
+        //np. zaczynajac szukac "league of legends champion sprite animation"
 
         Timeline animacja = new Timeline(new KeyFrame(Duration.millis(1000 / FPS),
                 event -> {
