@@ -25,6 +25,7 @@
     <HBox>
         <VBox prefWidth="200">
             <Button onAction="#draw" prefWidth="190">Example</Button>
+            <Button prefWidth="190" onAction="#animate">Animate</Button>
             <Button prefWidth="190">Chessboard</Button>
             <Button prefWidth="190">LoL countering Vladimir</Button>
         </VBox>

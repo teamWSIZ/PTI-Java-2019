@@ -12,6 +12,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
+
 //dialogi w javafx:
 //https://code.makery.ch/blog/javafx-dialogs-official/
 public class Controller {
@@ -100,5 +102,22 @@ public class Controller {
         }
 
         gc.drawImage(new Image("missile.png"), 100,200 );
+    }
+
+    public void animate() {
+        gc.setFill(Color.rgb(20,30,30,0.6));
+        gc.setStroke(Color.BLUEVIOLET);
+        gc.strokeRoundRect(10, 10, 50, 50, 10, 10);
+
+        img.addEventHandler(MOUSE_CLICKED, t -> {
+            int xx = (int)t.getX();
+            int yy = (int)t.getY();
+
+            System.out.println("myszka kliknieta w " + xx + " " + yy);
+            gc.strokeRect(xx - 10, yy - 10, 20, 20);
+            gc.strokeLine(xx-10,yy, xx+10,yy);
+            gc.strokeLine(xx,yy-10, xx,yy+10);
+        });
+
     }
 }
