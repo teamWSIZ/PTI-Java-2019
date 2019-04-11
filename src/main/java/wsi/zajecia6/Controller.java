@@ -1,5 +1,7 @@
 package wsi.zajecia6;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -11,8 +13,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
+import static javafx.scene.input.MouseEvent.MOUSE_MOVED;
+
 
 //dialogi w javafx:
 //https://code.makery.ch/blog/javafx-dialogs-official/
@@ -104,20 +113,62 @@ public class Controller {
         gc.drawImage(new Image("missile.png"), 100,200 );
     }
 
+    int mouseMovedCounter = 0;
+    int targetX = 0;
+    int targetY = 0;
+    double angle;
+
+    void drawTarget() {
+        gc.strokeRect(targetX - 10, targetY - 10, 20, 20);
+        gc.strokeLine(targetX-10,targetY, targetX+10,targetY);
+        gc.strokeLine(targetX,targetY-10, targetX,targetY+10);
+    }
+
+    void drawProgressBar() {
+        double r = 30;
+        double dx = Math.sin(angle) * r;
+        double dy = Math.cos(angle) * r;
+        gc.strokeLine(targetX + dx, targetY + dy, targetX-dx, targetY-dy);
+    }
+
     public void animate() {
         gc.setFill(Color.rgb(20,30,30,0.6));
         gc.setStroke(Color.BLUEVIOLET);
         gc.strokeRoundRect(10, 10, 50, 50, 10, 10);
 
         img.addEventHandler(MOUSE_CLICKED, t -> {
-            int xx = (int)t.getX();
-            int yy = (int)t.getY();
-
-            System.out.println("myszka kliknieta w " + xx + " " + yy);
-            gc.strokeRect(xx - 10, yy - 10, 20, 20);
-            gc.strokeLine(xx-10,yy, xx+10,yy);
-            gc.strokeLine(xx,yy-10, xx,yy+10);
+            targetX = (int)t.getX();
+            targetY = (int)t.getY();
         });
+
+        img.addEventHandler(MOUSE_MOVED, t-> {
+            mouseMovedCounter++;
+            System.out.println("mm: " + mouseMovedCounter);
+            targetX = (int)t.getX();
+            targetY = (int)t.getY();
+        });
+
+        int FPS = 60;
+
+        //Zadanie: znalezc 20 klatek animacji postaci...
+        //np. z LoL
+        //np. zaczynajac szukac tu: https://www.deviantart.com/leagueoflegends
+
+        Timeline animacja = new Timeline(new KeyFrame(Duration.millis(1000 / FPS),
+                event -> {
+//                    System.out.println("event animacji odpalony " + new Date());
+                    //Narysuj całą planszę na nowo
+                    gc.clearRect(0, 0, 800, 800);
+
+                    angle += 0.03;
+                    drawTarget();
+                    drawProgressBar();
+
+                    //...
+                }));
+        animacja.setCycleCount(Timeline.INDEFINITE);
+        animacja.play();
+
 
     }
 }
