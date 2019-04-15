@@ -32,7 +32,7 @@
 
         <ScrollPane fx:id="img_pane" prefHeight="400.0" prefWidth="400.0">
             <content>
-                <Canvas fx:id="img" height="300" width="300" />
+                <Canvas fx:id="canvas" height="300" width="300" />
             </content>
         </ScrollPane>
 

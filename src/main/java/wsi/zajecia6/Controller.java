@@ -10,14 +10,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
 import javafx.util.Duration;
-
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 import static javafx.scene.input.MouseEvent.MOUSE_MOVED;
@@ -30,14 +28,23 @@ public class Controller {
     @FXML private TextField tf1;
     @FXML private TextField tf2;
     @FXML private TextField wynikiWyborow;
-    @FXML private Canvas img;
+    @FXML private Canvas canvas;
     private GraphicsContext gc ;
+
+
+    double cannonAngle = 45;
+    double cannonX = 0;
+    double cannonY = 200;
+    double cannonLength = 70;
+
+
+
 
     @FXML
     public void initialize() {
         //uruchamiana przy włączaniu aplikacji
         System.out.println("second");
-        gc = img.getGraphicsContext2D(); //wyciągamy context z pola typu canvas
+        gc = canvas.getGraphicsContext2D(); //wyciągamy context z pola typu canvas
     }
 
     public void findWinner() {
@@ -75,8 +82,8 @@ public class Controller {
 
         alert.setTitle("Missile alert");
         alert.setHeaderText("Rockets are heading to your location; take cover now!");
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image("missile.png")); // To add an icon
+//        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+//        stage.getIcons().add(new Image("missile.png")); // To add an icon
         alert.showAndWait();
     }
 
@@ -136,16 +143,28 @@ public class Controller {
         gc.setStroke(Color.BLUEVIOLET);
         gc.strokeRoundRect(10, 10, 50, 50, 10, 10);
 
-        img.addEventHandler(MOUSE_CLICKED, t -> {
+        canvas.addEventHandler(MOUSE_CLICKED, t -> {
             targetX = (int)t.getX();
             targetY = (int)t.getY();
         });
 
-        img.addEventHandler(MOUSE_MOVED, t-> {
+        canvas.addEventHandler(MOUSE_MOVED, t-> {
             mouseMovedCounter++;
             System.out.println("mm: " + mouseMovedCounter);
             targetX = (int)t.getX();
             targetY = (int)t.getY();
+        });
+
+        canvas.addEventFilter(MouseEvent.ANY, (e) -> canvas.requestFocus());
+
+        canvas.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.UP) cannonAngle += Math.PI/120;
+            if (event.getCode() == KeyCode.DOWN) cannonAngle -= Math.PI/120;
+
+            if (event.getCode() == KeyCode.SPACE) {
+                System.out.println("FIRE !!!!!!!!!!!!!!");
+            }
+            event.consume();
         });
 
         int FPS = 60;
@@ -154,6 +173,7 @@ public class Controller {
         //np. z LoL
         //np. zaczynajac szukac "league of legends champion sprite animation"
 
+        // TODO: dzialko MSTA, strzelajace na spacji
         Timeline animacja = new Timeline(new KeyFrame(Duration.millis(1000 / FPS),
                 event -> {
 //                    System.out.println("event animacji odpalony " + new Date());
@@ -163,6 +183,8 @@ public class Controller {
                     angle += 0.03;
                     drawTarget();
                     drawProgressBar();
+                    drawCannon();
+                    drawBullet();
 
                     //...
                 }));
@@ -170,5 +192,14 @@ public class Controller {
         animacja.play();
 
 
+    }
+
+    private void drawBullet() {
+
+    }
+
+    private void drawCannon() {
+        gc.strokeLine(cannonX,cannonY,
+                cannonX + cannonLength * Math.cos(cannonAngle), cannonY - cannonLength * Math.sin(cannonAngle));
     }
 }
