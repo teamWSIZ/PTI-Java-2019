@@ -47,4 +47,16 @@ public class Bullet implements Sprite {
     public void kill() {
         alive = false;
     }
+
+    @Override
+    public String toString() {
+        return "Bullet{" +
+                "x=" + x +
+                ", y=" + y +
+                ", vx=" + vx +
+                ", vy=" + vy +
+                ", g=" + g +
+                ", alive=" + alive +
+                '}';
+    }
 }
