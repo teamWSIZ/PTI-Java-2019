@@ -155,6 +155,7 @@ public class Controller {
             targetY = (int)t.getY();
         });
 
+        //pozwala na reagowanie na klawisze podczas animacji na canvas
         canvas.addEventFilter(MouseEvent.ANY, (e) -> canvas.requestFocus());
 
         canvas.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
@@ -163,20 +164,16 @@ public class Controller {
 
             if (event.getCode() == KeyCode.SPACE) {
                 System.out.println("FIRE !!!!!!!!!!!!!!");
+                //tu wejdzie logika tworzenia pocisku
             }
             event.consume();
         });
 
-        int FPS = 60;
-
-        //Zadanie: znalezc 20 klatek animacji postaci...
-        //np. z LoL
-        //np. zaczynajac szukac "league of legends champion sprite animation"
+        int FPS = 30;
 
         // TODO: dzialko MSTA, strzelajace na spacji
         Timeline animacja = new Timeline(new KeyFrame(Duration.millis(1000 / FPS),
                 event -> {
-//                    System.out.println("event animacji odpalony " + new Date());
                     //Narysuj całą planszę na nowo
                     gc.clearRect(0, 0, 800, 800);
 
@@ -199,7 +196,8 @@ public class Controller {
     }
 
     private void drawCannon() {
-        gc.strokeLine(cannonX,cannonY,
-                cannonX + cannonLength * Math.cos(cannonAngle), cannonY - cannonLength * Math.sin(cannonAngle));
+        gc.strokeLine(cannonX, cannonY,
+                cannonX + cannonLength * Math.cos(cannonAngle),
+                cannonY - cannonLength * Math.sin(cannonAngle));
     }
 }
