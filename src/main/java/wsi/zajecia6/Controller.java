@@ -17,6 +17,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 import static javafx.scene.input.MouseEvent.MOUSE_MOVED;
 
@@ -32,6 +35,9 @@ public class Controller {
     private GraphicsContext gc ;
 
 
+    private List<Sprite> sprites; //wszystkie obiekty animacji
+
+
     double cannonAngle = 45;
     double cannonX = 0;
     double cannonY = 200;
@@ -45,6 +51,7 @@ public class Controller {
         //uruchamiana przy włączaniu aplikacji
         System.out.println("second");
         gc = canvas.getGraphicsContext2D(); //wyciągamy context z pola typu canvas
+        sprites = new ArrayList<>();
     }
 
     public void findWinner() {
@@ -165,6 +172,11 @@ public class Controller {
             if (event.getCode() == KeyCode.SPACE) {
                 System.out.println("FIRE !!!!!!!!!!!!!!");
                 //tu wejdzie logika tworzenia pocisku
+                double v = 1.;
+                double bulletVx = v * Math.cos(cannonAngle);
+                double bulletVy = - v * Math.sin(cannonAngle);
+
+                sprites.add(new Bullet(cannonX, cannonY, bulletVx, bulletVy, -0.01));
             }
             event.consume();
         });
@@ -182,6 +194,13 @@ public class Controller {
                     drawProgressBar();
                     drawCannon();
                     drawBullet();
+                    for(Sprite s : sprites) {
+                        s.move();
+                    }
+                    for(Sprite s : sprites) {
+                        s.draw(gc);
+                    }
+
 
                     //...
                 }));

@@ -27,7 +27,7 @@ public class Bullet implements Sprite {
 
     @Override
     public void draw(GraphicsContext gc) {
-
+        gc.strokeLine(x - vx * 10, y - vy * 10, x + vx * 10, y + vy * 10);
     }
 
     @Override
