@@ -14,7 +14,7 @@ public class Main extends Application {
                 .getResource("sample_z6.fxml"));
 //        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 800, 500));
+        primaryStage.setScene(new Scene(root, 900, 900));
         primaryStage.show();
     }
 

@@ -172,11 +172,19 @@ public class Controller {
             if (event.getCode() == KeyCode.SPACE) {
                 System.out.println("FIRE !!!!!!!!!!!!!!");
                 //tu wejdzie logika tworzenia pocisku
-                double v = 1.;
+                double v = 2.;
                 double bulletVx = v * Math.cos(cannonAngle);
                 double bulletVy = - v * Math.sin(cannonAngle);
 
-                sprites.add(new Bullet(cannonX, cannonY, bulletVx, bulletVy, -0.01));
+                double bulletX = cannonX + cannonLength * Math.cos(cannonAngle);
+                double bulletY = cannonY - cannonLength * Math.sin(cannonAngle);
+
+                //todo:
+                // - powiększyć canvas
+                // - dodać pole w którym ustawiamy prędkość pocisku (albo podłączyć się pod klawisze +/-)
+                // - spowodować, by długość pocisku (wyświetlona) nie zależała od jego prędkości
+
+                sprites.add(new Bullet(bulletX, bulletY, bulletVx, bulletVy, -0.01));
             }
             event.consume();
         });
