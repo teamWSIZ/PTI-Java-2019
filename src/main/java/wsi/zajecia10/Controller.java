@@ -15,19 +15,36 @@ class Planet {
     double dt;
 
     // zmien pozycje i predkosci przy podanej sile dzialajacej do srodka
-    void evolve(double f) {
-        double r = getR();
-        double fx = x / r * f;
-        double fy = y / r * f;
+    void evolve() {
+        //zamiast prostej metody Eulera, dokladniejsza https://en.wikipedia.org/wiki/Midpoint_method
+        double rr = getR();
+        double ff = getF(x, y);
+        double ffx = x / rr * ff;
+        double ffy = y / rr * ff;
 
-        x += vx * dt;
-        y += vy * dt;
-        vx += fx * dt;
-        vy += fy * dt;
+        double x1 = x + vx * dt / 2;
+        double y1 = y + vy * dt / 2;
+        double vx1 = vx + ffx * dt / 2;
+        double vy1 = vy  + ffy * dt / 2;
+
+        double rrr = Math.sqrt(x1*x1+y1*y1);
+        double fff = getF(x1, y1);
+        double fx = x1 / rrr * fff;
+        double fy = y1 / rrr * fff;
+
+        x += dt / 2 * vx1;
+        y += dt / 2 * vy1;
+        vx += dt / 2 * fx;
+        vy += dt / 2 * fy;
     }
 
     double getR() {
         return Math.sqrt(x * x + y * y);
+    }
+
+    double getF(double xx, double yy) {
+        double rr = Math.sqrt(xx*xx + yy*yy);
+        return - 100000. / (rr * rr);
     }
 
 }
@@ -49,7 +66,7 @@ public class Controller {
     @FXML
     public void initialize() {
         gc = canvas.getGraphicsContext2D(); //wyciągamy context z pola typu canvas
-        planet = new Planet(200, 0, 0.5, 20, 0.00001);
+        planet = new Planet(200, 0, 0.5, 10, 0.0001);
     }
 
     public void start() {
@@ -72,7 +89,7 @@ public class Controller {
     private void drawPlanet() {
         double r = planet.getR();
         for (int i = 0; i < 2000; i++) {
-            planet.evolve(- 100000. / (r * r));
+            planet.evolve();
         }
         gc.fillOval(planet.x + cx, planet.y + cy, 10,10);
 
